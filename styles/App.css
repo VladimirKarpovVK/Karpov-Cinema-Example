@@ -1,0 +1,180 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #343434
+}
+
+.app {
+    width: 100%;
+}
+
+.movies {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.movie {
+    flex: 1;
+    cursor: pointer;
+    height: 25vh;
+    margin-top: 2%;
+    min-width: 28%;
+    border: 1px solid green;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+}
+
+.help-span {
+    background-color: black;
+    position: absolute;
+    border: 1px solid yellow;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0.7;
+    z-index: 1;
+}
+
+img {
+    z-index: -10;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.movie-btn {
+    font-family: 'Times New Roman', Times, serif;
+    color: rgba(255, 255, 255, 0.8);
+    z-index: 400;
+    left: 80%;
+    background-color: rgb(218, 42, 42);
+    position: absolute;
+    border-radius: 5px;
+    border-color: rgb(221, 30, 30);
+    top: 35%;
+    transform: scale(2.5);
+    cursor: pointer;
+}
+
+.help-span:hover {
+    opacity: 0.4;
+    z-index: 0;
+}
+
+.span-header {
+    max-width: 80%;
+    padding: 25%;
+    font-size: 2.4em;
+    color: #fff;
+    z-index: 110;
+}
+
+.movie-header {
+    max-width: 80%;
+}
+
+.movie-header:hover {
+    transform: scale(1.2);
+    z-index: 200;
+}
+
+.modal {
+    height: 100vh;
+    opacity: 0.7;
+    background-color: black;
+    text-align: center;
+    z-index: 1000;
+    width: 100%;
+    color: #fff;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.modal-box {
+    padding: 10%;
+    border: 1px solid red;
+    padding-top: 50%;
+    color: black;
+    background-color: #fff;
+    width: 60%;
+    opacity: 1;
+    min-height: 100vh;
+    margin-left: 20%;
+    position: relative;
+}
+
+.amount-of-tickets {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.modal-inside {
+    width: 100%;
+    display: flex;
+}
+
+.modal-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.subbmit-btn {
+    background: #2771a3;
+    background-image: -webkit-linear-gradient(top, #2771a3, #14405c);
+    background-image: -moz-linear-gradient(top, #2771a3, #14405c);
+    background-image: -ms-linear-gradient(top, #2771a3, #14405c);
+    background-image: -o-linear-gradient(top, #2771a3, #14405c);
+    background-image: linear-gradient(to bottom, #2771a3, #14405c);
+    -webkit-border-radius: 15;
+    -moz-border-radius: 15;
+    border-radius: 15px;
+    font-family: Georgia;
+    color: #ffffff;
+    font-size: 31px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.amount-of-tickets {
+    opacity: 0.7;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.7em;
+    margin-right: 2%;
+    width: 10%;
+    border-radius: 10%;
+    transform: translateX(7%);
+    margin-bottom: 2%;
+    background-color: rgb(17, 17, 122);
+}
+
+.close-btn {
+    cursor: pointer;
+    background: #2771a3;
+    background-image: -webkit-linear-gradient(top, #2771a3, #14405c);
+    background-image: -moz-linear-gradient(top, #2771a3, #14405c);
+    background-image: -ms-linear-gradient(top, #2771a3, #14405c);
+    background-image: -o-linear-gradient(top, #2771a3, #14405c);
+    background-image: linear-gradient(to bottom, #2771a3, #14405c);
+    -webkit-border-radius: 15;
+    -moz-border-radius: 15;
+    border-radius: 15px;
+    font-family: Georgia;
+    color: #ffffff;
+    font-size: 31px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
