@@ -1,0 +1,290 @@
+import React, {Component,useState} from 'react';
+import ReactDOM from 'react-dom'; 
+ import './main.css'; 
+ import {useSpring, useTransition, animated} from 'react-spring';
+ 
+ const styles={
+     btn:{
+         flex:1,
+         color:'#fff',
+         fontFamily:'sans-serif',
+         marginTop:'-50%',
+         marginLeft:'100%',
+         backgroundColor:'green',
+         padding:'15%',
+         fontSize:'2rem'
+     },
+     btnLeft:{
+        flex:1,
+        color:'#fff',
+        fontFamily:'sans-serif',
+        marginTop:'-50%',
+        marginLeft:'-100%',
+        backgroundColor:'green',
+        padding:'15%',
+        fontSize:'2rem'
+    },
+     Check:{
+        marginTop:'100px',
+        width:'100px',
+         height:'100px',
+         backgroundColor:'#343434'
+     },
+     CheckWhite:{
+         
+        marginTop:'100px',
+        width:'100px',
+         height:'100px',
+         backgroundColor:'#fff'
+     }
+ }
+
+
+
+
+
+const ManyTogglers=()=>{
+
+    const [items,setItems]=useState([{
+        letter:'M',
+        key:1
+    },
+    {
+        letter:'o',
+        key:2
+    },
+    {
+        letter:'l',
+        key:3
+    },
+    {
+        letter:'l',
+        key:4
+    },
+    {
+        letter:'y',
+        key:5
+    }
+
+]);
+
+
+
+const transition =useTransition(items,item=>item.key,{
+
+from:{ opacity:0  },
+enter:{ opacity:1 },
+leave:{ opacity:0 } 
+    
+});
+
+     return (
+        <div >
+            {
+                transition.map(({ item, key,props })=>
+                            <animated.h1 style={props} 
+                                         key={key}>
+                                            {
+                                            item.letter
+                                            }
+                            </animated.h1>
+                )
+            }
+           
+
+          <button style={{...styles.btn}} onClick={()=>setItems([
+              {letter:'D',
+               key:1
+              } 
+               
+              ])}>Click</button>
+        </div>
+    )
+
+};
+
+
+ const TransitionToggle=()=> {
+
+ const [isToggled, setToggler]=useState(false);
+ const transition= useTransition(isToggled,null, {
+     from:{...styles.Check,
+        opacity:0},
+     enter:{
+        ...styles.Check,
+        opacity:1},
+     leave:{
+        ...styles.Check,
+        opacity:0}
+});
+
+let offTop= isToggled? {marginTop:'0'}:{marginTop:'10px'};
+    return (
+             <div>
+            <div> 
+                    {
+                        
+                        transition.map(( { item, key, props })=>             
+                        item&&<animated.div style={props}>
+                            Hello
+                        </animated.div>
+                )  
+        
+                }
+            </div>
+
+            <button onClick={()=>setToggler(!isToggled)} style={{...styles.btnLeft,...offTop }}>Click</button>
+             </div>);
+}
+
+
+
+ const Checkme=()=>{
+
+    const [isCheked,GetCheck]=useState(false);
+    const {y}= useSpring({
+ 
+ 
+    y:isCheked ? 1:0
+ 
+        });
+
+        return (
+            <div>
+            <animated.div style={ {...styles.Check,
+            transform:y.interpolate(y=>`translate3d(0,${y*100}%,0)`)}   }>
+
+            </animated.div>
+               <button style={{...styles.btn}}  onClick={()=>GetCheck(!isCheked)}>Click</button>
+               </div>
+ )
+ };
+    
+ const Toggler= ()=>{
+
+    const [isToggle,setToggle]=useState(false);
+
+    const fade=useSpring({
+        color: isToggle?'red':'blue',
+     })
+    return (<div className="box">
+        <animated.h5 style={fade}>Hide me</animated.h5>
+        <button onClick={()=>setToggle(!isToggle)}>Toggle</button></div>);
+ }
+class App extends Component{ 
+
+    
+render(){ 
+     
+    return( <div className="App">
+              <ManyTogglers/>
+               <div style={{margin:'100px'}}></div>
+        <TransitionToggle/>
+
+              <div style={{
+                  margin:'100px',
+                  
+                  textAlign:'center',
+                  padding:'25px'
+                   }}>Hello</div>
+              <Checkme/>
+
+            </div>);
+}
+    };
+
+
+  
+    export default App;
+
+
+
+
+
+
+
+
+
+
+// const AvatarList=({children})=>{
+
+//     return (
+//          <div className="ui list">
+//        {children}
+//          </div>
+//     )
+// }
+
+// const Avatar=({name,description,sourse} )=>{
+//     return (
+//                 <div className="item">
+//                         <img className="ui avatar image" src={sourse}/>
+//                         <div className="content">
+//                         <a className="header">{name}</a>
+//                         <div className="description">{description} turtle</div>
+//                         </div>
+//                 </div>
+            
+//     );
+// }
+//  class App extends Component{
+
+
+//     state={
+//         names:[{id:1,
+//         name:'Leonardo',
+//         description:'Unforgattable',
+//         sourse:'https://www.nicepng.com/png/detail/26-264603_teenage-mutant-ninja-turtles-nickelodeon-leonardo-leonardo-ninja.png'
+//     },
+//         {
+//             id:2,
+ 
+//             name:'Raphael',
+//             description:'Unforgattable',
+//             sourse:'https://vignette.wikia.nocookie.net/tmnt/images/0/0a/Raph_ch_pu2.png/revision/latest?cb=20140503235225'
+     
+ 
+//         },
+//         {
+//             id:3,
+//             name:'Mikelangello',
+//             description:'Unforgattable',
+//             sourse:'https://vignette.wikia.nocookie.net/tmnt2012series/images/8/88/2012_Michelangelo_clean_character_image.png/revision/latest?cb=20130809041043'     
+//         },
+//         {
+             
+//                 id:4,
+//                 name:'Donatello',
+//                 description:'Unforgattable',
+//                 sourse:'data:image/jpeg;base64,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'
+                
+             
+//         }
+//     ]
+//     }
+//     TurtlesRender=()=>{
+// return this.state.names.map((item,i)=>{
+//     return <Avatar key={i}
+//     name={item.name}
+//     description={item.description}
+//     sourse={item.sourse}
+//     />
+// });
+//     }
+
+//     render() {
+
+//         return (
+//         <div className="App">
+//              <AvatarList>
+//                 {
+//                     this.TurtlesRender()          
+//                 }
+//             </AvatarList>
+//         </div>
+        
+//         );
+     
+//     }
+// }
+
